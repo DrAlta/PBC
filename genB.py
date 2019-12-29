@@ -88,3 +88,4 @@ for lvl1 in itertools.combinations(costs1, 1):
 print('    if cost1 == 0:')
 print('        ret=testC(ccost, dcost, ecost, rAC, rAB, rAD, rAE, rBC, rCD, rCE,rBD, rBE, rDE, rA, rB, rC, rD, rE)')
 print('    return(ret)')
+print('#####################################################################################################################################')
