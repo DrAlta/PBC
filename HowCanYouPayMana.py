@@ -2,7 +2,7 @@ import pdb
 def myadd(xhash, xkey, x):
  #   print("adding ",xkey, "=",x," to ",xhash)
     if xkey in xhash:
-        xhash.update({xkey: x})
+        xhash.update({xkey: xhash[xkey]+x})
     else:
         if x >0:
             xhash.update({xkey: x})
@@ -3670,6 +3670,7 @@ def testB(cost1, ccost, dcost, ecost, rAB, rAC, rAD, rAE, rBC, rBD, rBE, rCD, rC
                                 ret.append(x)
     if cost1 == 0:
         ret=testC(ccost, dcost, ecost, rAC, rAB, rAD, rAE, rBC, rCD, rCE,rBD, rBE, rDE, rA, rB, rC, rD, rE)
+    print(ret)
     return(ret)
 #####################################################################################################################################
 
