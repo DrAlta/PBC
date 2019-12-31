@@ -107,13 +107,14 @@ def myfunc(cost,xMana,manaTypes,nManas,prices,avalMana):
 ######################
 ######################
 ######################
-def testfunc(xMana,manaTypes,nManas,prices,avalMana):
+def recurseTest(xMana,manaTypes,nManas,prices,avalMana):
     if xMana in prices and prices[xMana]>0:
         #print("prices=",prices[xMana],", Xmana=",xMana,", manaTypes=",manaTypes,", nManas=",nManas,", prices=",prices,", avalMana=",avalMana)
         ret=myfunc(prices[xMana],xMana,manaTypes,nManas,prices,avalMana)
         if ret:
             #print("continueing to next manatype with:",ret)
-            if manaTypes.index(xMana)<len(manaTypes)-1:
+            costTypes=list(prices.keys())
+            if costTypes.index(xMana)<len(costTypes)-1:
                 nextMana=manaTypes[manaTypes.index(xMana)+1]
                 #print("doing",nextMana)
                 ret2=[]
@@ -123,7 +124,7 @@ def testfunc(xMana,manaTypes,nManas,prices,avalMana):
                     for cmod in x10:
                         myadd(navalMana,cmod,-x10[cmod])
                     #print("prices=",prices[xMana],", Xmana=",xMana,", manaTypes=",manaTypes,", nManas=",nManas,", prices=",prices,", avalMana=",navalMana)
-                    tail=testfunc(nextMana,manaTypes,nManas,prices,navalMana)
+                    tail=recurseTest(nextMana,manaTypes,nManas,prices,navalMana)
                     if tail:
                         
                         #print("tail=",tail)
@@ -145,12 +146,17 @@ def testfunc(xMana,manaTypes,nManas,prices,avalMana):
             return([])
     else:
         #print("continueing to next manatype")
-        if manaTypes.index(xMana)<len(manaTypes)-1:
+        costTypes=list(prices.keys())
+        if costTypes.index(xMana)<len(costTypes)-1:
             nextMana=manaTypes[manaTypes.index(xMana)+1]
             #print("doing",nextMana)
-            return(testfunc(nextMana,manaTypes,nManas,prices,avalMana))
+            return(recurseTest(nextMana,manaTypes,nManas,prices,avalMana))
         #else:
         #    print("nomore Manas!")
         return([dict()])
-        
-print(testfunc(xMana,manaTypes2,nManas2,prices,avalMana))
+def testManaCosts(manaTypes,nManas,prices,avalMana):
+    costTypes=list(prices.keys())
+    if 0<len(costTypes):
+        return(recurseTest(costTypes.pop(0),manaTypes,nManas,prices,avalMana))
+
+print(testManaCosts(manaTypes2,nManas2,prices,avalMana))
