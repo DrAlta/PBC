@@ -112,46 +112,45 @@ def testfunc(xMana,manaTypes,nManas,prices,avalMana):
         #print("prices=",prices[xMana],", Xmana=",xMana,", manaTypes=",manaTypes,", nManas=",nManas,", prices=",prices,", avalMana=",avalMana)
         ret=myfunc(prices[xMana],xMana,manaTypes,nManas,prices,avalMana)
         if ret:
-            print("continueing to next manatype with:",ret)
+            #print("continueing to next manatype with:",ret)
             if manaTypes.index(xMana)<len(manaTypes)-1:
                 nextMana=manaTypes[manaTypes.index(xMana)+1]
-                print("doing",nextMana)
+                #print("doing",nextMana)
                 ret2=[]
                 for x10 in ret:
-                    print("trying on",x10)
+                    #print("trying on",x10)
                     navalMana=copy.deepcopy(avalMana)
                     for cmod in x10:
                         myadd(navalMana,cmod,-x10[cmod])
-                    print("prices=",prices[xMana],", Xmana=",xMana,", manaTypes=",manaTypes,", nManas=",nManas,", prices=",prices,", avalMana=",navalMana)
+                    #print("prices=",prices[xMana],", Xmana=",xMana,", manaTypes=",manaTypes,", nManas=",nManas,", prices=",prices,", avalMana=",navalMana)
                     tail=testfunc(nextMana,manaTypes,nManas,prices,navalMana)
                     if tail:
                         
-                        print("tail=",tail)
+                        #print("tail=",tail)
                         for xtail in tail:
-                            print(xMana,">", xtail)
+                            #print(xMana,">", xtail)
                             for tmod in x10:
                                 myadd(xtail,tmod,x10[tmod])
                         ret2.append(xtail)
-                        print("return point Y",xtail)
+                        #print("return point Y",xtail)
                     else:
-                        print("return point X")
+                        #print("return point X")
                         return([])
                 return(ret2)
             else:
                 return(ret)
-                print("nomore Manas!")
-                
+                #print("nomore Manas!")
         else:
-            print("failing on",xMana)
+            #print("failing on",xMana)
             return([])
     else:
-        print("continueing to next manatype")
+        #print("continueing to next manatype")
         if manaTypes.index(xMana)<len(manaTypes)-1:
             nextMana=manaTypes[manaTypes.index(xMana)+1]
-            print("doing",nextMana)
+            #print("doing",nextMana)
             return(testfunc(nextMana,manaTypes,nManas,prices,avalMana))
-        else:
-            print("nomore Manas!")
+        #else:
+        #    print("nomore Manas!")
         return([dict()])
         
 print(testfunc(xMana,manaTypes2,nManas2,prices,avalMana))
