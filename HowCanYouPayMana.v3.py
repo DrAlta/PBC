@@ -55,7 +55,7 @@ def loopfunc(comb,cost, mytail,ret,xMana,manaTypes,nManas,prices,avalMana):
         comb2.remove(x)
         #myinsert(buildup, x,0)
         #print({x},"avalMana",set(avalMana.keys()))
-        if {x}.issubset(set(list(avalMana.keys()))):
+        if {x}.issubset(set(avalMana.keys())):
             print(x,"is in",set(avalMana.keys()))
             if cost>0:
                 print("cost",cost,"from",avalMana[x])
